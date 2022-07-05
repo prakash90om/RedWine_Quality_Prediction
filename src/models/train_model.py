@@ -1,5 +1,6 @@
 import os
 import io
+import pickle
 import pandas as pd 
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -34,6 +35,10 @@ X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2, random
 # Fit a model on the train section
 regr = RandomForestRegressor(max_depth=5, random_state=seed)
 regr.fit(X_train, y_train)
+
+filename = 'models/model.h5'
+pickle.dump(regr, open(filename, 'wb'))
+
 
 predicted_qualities = regr.predict(X_test)
 

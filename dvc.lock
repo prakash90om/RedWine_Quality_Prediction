@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  my_train:
+    cmd: python3 src/models/train_model.py
+    deps:
+    - path: data/raw/
+      md5: 56ae76e21161a45d16647112a36fc178.dir
+      size: 101061
+      nfiles: 4
+    - path: src/models/train_model.py
+      md5: eb3a91f713a7cc6f70cb26240b05c972
+      size: 1351
+    outs:
+    - path: models/model.h5
+      md5: 63e289948b065109a19d89f33b66001d
+      size: 395550
+    - path: reports/metrics.json
+      md5: 784c247d2f2fd4383935435ea3415772
+      size: 81

@@ -1,0 +1,11 @@
+stages:
+  my_train:
+    cmd: python3 src/models/train_model.py
+    deps:
+    - data/raw/
+    - src/models/train_model.py
+    metrics:
+    - reports/metrics.json:
+        cache: false
+    outs:
+    - models/model.h5
