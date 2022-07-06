@@ -1,3 +1,6 @@
+
+[![Red Wine Quality Prediction](https://github.com/prakash90om/RedWine_Quality_Prediction/actions/workflows/python-cml.yml/badge.svg?branch=main&event=push)](https://github.com/prakash90om/RedWine_Quality_Prediction/actions/workflows/python-cml.yml)
+
 Red Wine Quality Prediction
 ==============================
 
