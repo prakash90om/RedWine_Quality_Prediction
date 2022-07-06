@@ -11,10 +11,8 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Your ML workflow goes here
-          pip install -r requirements.txt
-          pip install -e .
-          
-          dvc repro
+          make all
+          dvc repro evaluate
 
           git fetch --prune
           dvc metrics diff --show-md main > report.md
