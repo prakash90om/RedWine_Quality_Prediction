@@ -7,15 +7,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import json
+import logging
+import matplotlib.pyplot as plt
+
 
 # Set random seed
 seed = 42
 
-def eval_metrics(actual, pred):
-    rmse = np.sqrt(mean_squared_error(actual, pred))
-    mae = mean_absolute_error(actual, pred)
-    r2 = r2_score(actual, pred)
-    return rmse, mae, r2
+def eval_metrics(model, x, y):
+    l, acc = model.evaluate(x,y)
+    return l,acc
 
 ################################
 ########## DATA PREP ###########
@@ -38,15 +39,22 @@ regr.fit(X_train, y_train)
 
 filename = 'models/model.h5'
 pickle.dump(regr, open(filename, 'wb'))
+logger = logging.getLogger(__name__)
+logger.info('Model saved in the folder')
 
-
-predicted_qualities = regr.predict(X_test)
-
-(rmse, mae, r2) = eval_metrics(y_test, predicted_qualities)
-
+loss, accuracy = eval_metrics(regr, X_test, Y_test)
 		
 # Now print to file
 with open("reports/metrics.json", 'w') as outfile:
-        json.dump({ "rmse": rmse, "mae": mae, "r2":r2}, outfile)
+        json.dump({ "Loss": loss, "Accuracy": accuracy}, outfile)
+
+plt.bar(["Accuracy","Loss"],[accuracy,loss])
+plt.title("Model Evaluation Metrics")
+plt.savefig("reports/metrics.png")
+
+logger = logging.getLogger(__name__)
+logger.info('model Generated.')
+logger.info(f'Loss : {loss} , Accuracy : {accuracy}')
+
 
 

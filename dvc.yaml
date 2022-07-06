@@ -10,6 +10,7 @@ stages:
     - src/models/train_model.py
     outs:
     - models/model.h5
+    - reports/metrics.png
     metrics:
     - reports/metrics.json:
         cache: false
