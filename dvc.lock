@@ -26,5 +26,5 @@ stages:
     cmd: python3 src/models/predict_model.py
     deps:
     - path: src/models/predict_model.py
-      md5: d41d8cd98f00b204e9800998ecf8427e
-      size: 0
+      md5: 6a467fa8ee9529420648987190c89917
+      size: 943

@@ -20,7 +20,7 @@ def predict_model(modelPath,data):
 
 	## predict data 
 	pred = loaded_model.predict(data)
-	logger.info(f'Predicted Value is {number}')
+	logger.info(f'Predicted Value is {pred}')
 
 	return pred
 
@@ -37,5 +37,5 @@ if __name__ == '__main__':
 	y = df.pop("quality")
 	X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2, random_state=42)
 
-	predict_model("./models/model.h5",X_test[2]);
+	predict_model("./models/model.h5",X_test[0:1]);
 
