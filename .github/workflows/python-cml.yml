@@ -2,20 +2,23 @@ name: Red Wine Quality Prediction
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
-    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    runs-on: ubuntu-latest
     steps:
-      - name: permission
-        run: git config --global --add safe.directory /__w/redWineQuality/redWineQuality
       - uses: actions/checkout@v2
-      - name: cml_run
+      - uses: iterative/setup-cml@v1
+      - name: CML_Train
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Your ML workflow goes here
           pip install -r requirements.txt
+          pip install -e .
+          
           dvc repro
+
           git fetch --prune
           dvc metrics diff --show-md main > report.md
-          # Add figure to the report
-          echo "## Validating results by region"
+
+          # Add report 
+          cml-publish reports/metrics.png --md >> report.md
           cml-send-comment report.md
