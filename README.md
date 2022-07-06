@@ -4,7 +4,7 @@
 Red Wine Quality Prediction
 ==============================
 
-Red Wine Quality Prediction Model.
+Red Wine Quality Prediction Model. It predicts the quality of the Red Wine using [https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009] Kaggle Dataset. ML Model used for this prediction is RandomForestRegressor. Since, this is a regression task so, Metrics used are RMSE, MAE and R2 scores. The repository is configured with DVC and CML. The github actions will be carried out upon code push.
 
 Project Organization
 ------------
@@ -47,6 +47,12 @@ Project Organization
        └── visualization  <- Scripts to create exploratory and results oriented visualizations
            └── visualize.py
 
+Following is the file structure
+
+## src -- Source code direcory
+      data/make_dataset.py:     Preparing the Wine Quality Dataset. Get/Dowload dataset from Cloud storage (Google Drive).
+      models/train_model.py:    Performing the training with RandomForest Regressor model.
+      models/predict_model.py:  Performing prediction using the trained model in train stage.
 
 --------
 
