@@ -65,4 +65,4 @@ plt.savefig("reports/metrics.png")
 
 logger = logging.getLogger(__name__)
 logger.info('model Generated.')
-logger.info(f'RMSE : {rmse} , Accuracy : {accuracy}')
+logger.info(f'RMSE : {rmse} , MAE : {mae}, R2: {r2}')
