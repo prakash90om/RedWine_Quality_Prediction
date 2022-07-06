@@ -12,7 +12,7 @@ jobs:
         run: |
           # Your ML workflow goes here
           make all
-          dvc repro evaluate
+          dvc repro
 
           git fetch --prune
           dvc metrics diff --show-md main > report.md

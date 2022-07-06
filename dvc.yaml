@@ -5,7 +5,7 @@ stages:
     - data/raw/winequality-red.csv
     - src/data/make_dataset.py
   train:
-    cmd: python3 src/models/train_model.py
+    cmd: python3 src/models/train_model.py, dvc plots show
     deps:
     - src/models/train_model.py
     outs:
