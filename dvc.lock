@@ -10,18 +10,23 @@ stages:
       md5: 5489065bbc9b2d693064bd80bbaca600
       size: 1195
   train:
-    cmd: python3 src/models/train_model.py
+    cmd:
+    - python3 src/models/train_model.py
+    - dvc plots show
     deps:
     - path: src/models/train_model.py
-      md5: eb3a91f713a7cc6f70cb26240b05c972
-      size: 1351
+      md5: 2617aa0673666600186bf4f104bd3e2d
+      size: 1866
     outs:
     - path: models/model.h5
       md5: 63e289948b065109a19d89f33b66001d
       size: 395550
     - path: reports/metrics.json
-      md5: 784c247d2f2fd4383935435ea3415772
+      md5: 6453d65f0f4bb007cfdbdf170f27b5a5
       size: 81
+    - path: reports/metrics.png
+      md5: f5552d97693fac7d4e8de7953471dfbc
+      size: 14987
   predict:
     cmd: python3 src/models/predict_model.py
     deps:
