@@ -5,6 +5,7 @@ pandas
 sklearn
 numpy
 pandas
+matplotlib
 dvc
 python-dotenv
 
