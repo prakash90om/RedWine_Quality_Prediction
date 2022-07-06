@@ -23,10 +23,10 @@ def eval_metrics(model, x, y):
     rmse = np.sqrt(mean_squared_error(y, y_pred))
     
     # Calculate MAE
-    rmse = np.sqrt(mean_absolute_error(y, y_pred))
+    mae = np.sqrt(mean_absolute_error(y, y_pred))
 
     # Calculate R2 
-    rmse = np.sqrt(r2_score(y, y_pred))
+    r2 = np.sqrt(r2_score(y, y_pred))
     return rmse,mae,r2
 
 ################################
