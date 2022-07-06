@@ -10,7 +10,6 @@ import json
 import logging
 import matplotlib.pyplot as plt
 
-
 # Set random seed
 seed = 42
 
@@ -62,3 +61,7 @@ with open("reports/metrics.json", 'w+') as outfile:
 plt.bar(["RMSE","MAE", "R2"],[rmse,mae,r2])
 plt.title("Regression Model Evaluation Metrics")
 plt.savefig("reports/metrics.png")
+
+logger = logging.getLogger(__name__)
+logger.info('model Generated.')
+logger.info(f'RMSE : {rmse} , MAE : {mae}, R2: {r2}')
