@@ -57,7 +57,7 @@ rmse,mae,r2 = eval_metrics(regr, X_test, y_test)
 
 # Now print to file
 with open("reports/metrics.json", 'w') as outfile:
-        json.dump({ "RMSE": rmse, "MAE": mae}, "R2": r2, outfile)
+        json.dump({ "RMSE": rmse, "MAE": mae, "R2": r2}, outfile)
 
 plt.bar(["RMSE","MAE", "R2"],[rmse,mae,r2])
 plt.title("Regression Model Evaluation Metrics")
