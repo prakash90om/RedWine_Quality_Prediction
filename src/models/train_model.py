@@ -18,13 +18,15 @@ def eval_metrics(model, x, y):
     # Make predictions for the test set
     y_pred = model.predict(x)
 
-	# below metrics can be used for Regression model
+    # below metrics can be used for Regression model
     # Calculate RMSE
     rmse = np.sqrt(mean_squared_error(y, y_pred))
-	# Calculate MAE
-	rmse = np.sqrt(mean_absolute_error(y, y_pred))
-	# Calculate R2 
-	rmse = np.sqrt(r2_score(y, y_pred))
+    
+    # Calculate MAE
+    rmse = np.sqrt(mean_absolute_error(y, y_pred))
+
+    # Calculate R2 
+    rmse = np.sqrt(r2_score(y, y_pred))
     return rmse,mae,r2
 
 ################################
