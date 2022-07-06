@@ -42,7 +42,7 @@ pickle.dump(regr, open(filename, 'wb'))
 logger = logging.getLogger(__name__)
 logger.info('Model saved in the folder')
 
-loss, accuracy = eval_metrics(regr, X_test, Y_test)
+loss, accuracy = eval_metrics(regr, X_test, y_test)
 		
 # Now print to file
 with open("reports/metrics.json", 'w') as outfile:
