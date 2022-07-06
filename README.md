@@ -17,6 +17,8 @@ Project Organization
     │
     │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
+    |
+    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   └── figures        <- Generated graphics and figures to be used in reporting

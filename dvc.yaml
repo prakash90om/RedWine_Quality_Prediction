@@ -1,11 +1,19 @@
 stages:
-  my_train:
+  prepare:
+    cmd: python3 src/data/make_dataset.py ./data/raw/
+    deps:
+    - data/raw/winequality-red.csv
+    - src/data/make_dataset.py
+  train:
     cmd: python3 src/models/train_model.py
     deps:
-    - data/raw/
     - src/models/train_model.py
+    outs:
+    - models/model.h5
     metrics:
     - reports/metrics.json:
         cache: false
-    outs:
-    - models/model.h5
+  predict:
+    cmd: python3 src/models/predict_model.py
+    deps:
+    - src/models/predict_model.py

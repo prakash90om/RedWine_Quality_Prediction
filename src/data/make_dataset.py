@@ -4,16 +4,21 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 
+import os
+import urllib.request
+from references.data_dictionary import ProjectParameters
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
+def main(input_filepath):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
+    ## Fetch the Wine dataset from the URL and save it in the Raw format
+    urllib.request.urlretrieve(ProjectParameters["RawDataURL"], "./data/raw/winequality-red.csv")
+
     logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+    logger.info('Data set Fetched from the cloud.')
 
 
 if __name__ == '__main__':

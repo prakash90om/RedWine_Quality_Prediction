@@ -1,12 +1,17 @@
 schema: '2.0'
 stages:
-  my_train:
+  prepare:
+    cmd: python3 src/data/make_dataset.py ./data/raw/
+    deps:
+    - path: data/raw/winequality-red.csv
+      md5: 6a883fd98624e18c0b7ce251f4fab4fb
+      size: 100951
+    - path: src/data/make_dataset.py
+      md5: 5489065bbc9b2d693064bd80bbaca600
+      size: 1195
+  train:
     cmd: python3 src/models/train_model.py
     deps:
-    - path: data/raw/
-      md5: 56ae76e21161a45d16647112a36fc178.dir
-      size: 101061
-      nfiles: 4
     - path: src/models/train_model.py
       md5: eb3a91f713a7cc6f70cb26240b05c972
       size: 1351
@@ -17,3 +22,9 @@ stages:
     - path: reports/metrics.json
       md5: 784c247d2f2fd4383935435ea3415772
       size: 81
+  predict:
+    cmd: python3 src/models/predict_model.py
+    deps:
+    - path: src/models/predict_model.py
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
