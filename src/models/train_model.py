@@ -1,12 +1,11 @@
 import os
 import io
 import pickle
-import pandas as pd 
+import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.metrics import accuracy_score
 import json
 import logging
 import matplotlib.pyplot as plt
@@ -19,12 +18,14 @@ def eval_metrics(model, x, y):
     # Make predictions for the test set
     y_pred = model.predict(x)
 
-    # Calculate accuracy score
-    acc = accuracy_score(y, y_pred)
-
+	# below metrics can be used for Regression model
     # Calculate RMSE
     rmse = np.sqrt(mean_squared_error(y, y_pred))
-    return acc, rmse 
+	# Calculate MAE
+	rmse = np.sqrt(mean_absolute_error(y, y_pred))
+	# Calculate R2 
+	rmse = np.sqrt(r2_score(y, y_pred))
+    return rmse,mae,r2
 
 ################################
 ########## DATA PREP ###########
@@ -50,19 +51,16 @@ pickle.dump(regr, open(filename, 'wb'))
 logger = logging.getLogger(__name__)
 logger.info('Model saved in the folder')
 
-accuracy,rmse = eval_metrics(regr, X_test, y_test)
-		
+rmse,mae,r2 = eval_metrics(regr, X_test, y_test)
+
 # Now print to file
 with open("reports/metrics.json", 'w') as outfile:
-        json.dump({ "RMSE": rmse, "Accuracy": accuracy}, outfile)
+        json.dump({ "RMSE": rmse, "MAE": mae}, "R2": r2, outfile)
 
-plt.bar(["Accuracy","RMSE"],[accuracy,rmse])
-plt.title("Model Evaluation Metrics")
+plt.bar(["RMSE","MAE", "R2"],[rmse,mae,r2])
+plt.title("Regression Model Evaluation Metrics")
 plt.savefig("reports/metrics.png")
 
 logger = logging.getLogger(__name__)
 logger.info('model Generated.')
 logger.info(f'RMSE : {rmse} , Accuracy : {accuracy}')
-
-
-
